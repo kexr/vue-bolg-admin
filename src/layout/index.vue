@@ -5,9 +5,11 @@
     <!-- 左侧导航 -->
     <sidebar class="sidebar-container" />
     <!-- 右侧内容 -->
-    <div class="main-container">
+    <div class="hasTagsView main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
+        <!-- 使用标签导航组件 -->
+        <tags-view />
       </div>
       <app-main />
     </div>
@@ -15,7 +17,7 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from './components'
+import { Navbar, Sidebar, AppMain, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
@@ -23,7 +25,8 @@ export default {
   components: {
     Navbar,
     Sidebar,
-    AppMain
+    AppMain,
+    TagsView
   },
   mixins: [ResizeMixin],
   computed: {
