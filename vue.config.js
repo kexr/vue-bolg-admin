@@ -36,7 +36,19 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    before: require('./mock/mock-server.js'),
+
+    proxy: {
+      [process.env.VUE_APP_BASE_API] :{ // 是.env.development 文件的'/dev-api':          
+        // 目标服务器地址          
+        target: 'https://mock.mengxuegu.com/mock/6095007cc7b7385be0a82a41/blog-admin',          
+        changeOrigin: true, // 开启代理服务器，          
+        pathRewrite: {              
+          // '^/dev-api': '',              
+          [ '^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

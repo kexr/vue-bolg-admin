@@ -51,28 +51,34 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '修改后的导航', icon: 'dashboard', affix: true }
+      meta: { title: '首页', icon: 'dashboard', affix: true }
     }]
   },
 
   {
-    path: '/example',
+    path: '/blog',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/blog/article',
+    name: 'Blog',
+    meta: { title: '博客管理', icon: 'el-icon-notebook-2' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'article',
+        name: 'Article',
+        component: () => import('@/views/article/index'),
+        meta: { title: '文章管理', icon: 'el-icon-notebook-1' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'category',
+        name: 'Category',
+        component: () => import('@/views/category/index'),
+        meta: { title: '分类管理', icon: 'el-icon-s-order' }
+      }, 
+      {
+        path: 'lable',
+        name: 'Lable',
+        component: () => import('@/views/lable/index'),
+        meta: { title: '标签管理', icon: 'el-icon-collection-tag' }
       }
     ]
   },
@@ -159,7 +165,17 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

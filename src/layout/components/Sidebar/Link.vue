@@ -28,12 +28,14 @@ export default {
   methods: {
     linkProps(to) {
       if (this.isExternal) {
+        //console.log(to,'isExternal')
         return {
           href: to,
           target: '_blank',
           rel: 'noopener'
         }
       }
+      //console.log(to,this.isExternal)
       return {
         to: to
       }
