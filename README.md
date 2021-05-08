@@ -1,4 +1,4 @@
-# vue-admin
+# vue-blog-admin
 
 > 该项目采用vue-admin-template制作。
 >
