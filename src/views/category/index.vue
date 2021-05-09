@@ -12,7 +12,7 @@
             <el-form-item>
                 <el-button icon='el-icon-search' type="primary" @click="queryData">查询</el-button>    
                 <el-button icon='el-icon-refresh' @click="reload">重置</el-button>    
-                <el-button type="primary" icon="el-icon-circle-plus-outline" >新增</el-button>
+                <el-button type="primary" icon="el-icon-circle-plus-outline" @click="openAdd()">新增</el-button>
             </el-form-item>
         </el-form>
 
@@ -66,11 +66,20 @@
             layout="total, sizes, prev, pager, next, jumper"
             :total="page.total">
         </el-pagination>
+
+        <edit 
+        :title="edit.title" 
+        :dialogVisible="edit.visible"           
+        :formData="edit.formData"
+        @remote="remoteClose"
+        >
+        </edit>
     </div>
 </template>    
 
 <script>
 import api from '@/api/category.js'
+import Edit from './edit.vue'
 
 const statusOptions = [    
     {code: 0, name: '禁用'},    
@@ -79,6 +88,7 @@ const statusOptions = [
 
 export default {
     name: 'Category',
+    components: { Edit },
     data() {    
         return {      
             list: [],      
@@ -88,7 +98,17 @@ export default {
                 size: 20, // 每页显示20条数据,      
             },      
             query: {}, // 查询条件
-            statusOptions     
+            statusOptions,
+            edit: {
+                title: '',
+                visible: false,
+                formData: {
+                    'name': '',
+                    status: '',
+                    sort: '',
+                    remart: ''
+                },
+            }     
         }  
     },
     created(){
@@ -118,6 +138,20 @@ export default {
         reload() {      
  	        this.query = {};      
  	        this.fetchData();    
+        },
+        openAdd(){
+            this.edit.visible = true;
+            this.edit.title = '新增';
+        },
+        remoteClose(){
+            this.formData = {
+                'name': '',
+                status: '',
+                sort: '',
+                remart: ''
+            };
+            this.edit.visible = false;
+            this.fetchData();
         }
     },
     filters: {
