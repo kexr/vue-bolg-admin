@@ -55,6 +55,15 @@
                     </el-tag>
                 </template>
             </el-table-column>
+            <el-table-column
+                align="center"
+                label="操作"
+            >
+                <template slot-scope="scope">
+                    <el-button @click="handleEdit(scope.row.id)" size="mini">编辑</el-button> 
+                    <el-button type="danger" size="mini">删除</el-button> 
+                </template>
+            </el-table-column>
         </el-table>
 
         <el-pagination
@@ -152,6 +161,15 @@ export default {
             };
             this.edit.visible = false;
             this.fetchData();
+        },
+        handleEdit(id){
+            api.getByID(id).then(res => {
+                if(res.code === 20000){
+                    this.edit.formData = res.data;
+                    this.edit.title = '编辑';
+                    this.edit.visible = true;
+                }
+            })
         }
     },
     filters: {

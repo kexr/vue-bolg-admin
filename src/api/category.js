@@ -1,6 +1,4 @@
 import request from '@/utils/request'
-import store from '@/store'
-console.log(store)
 
 export default {
     getList(query, current = 1, size = 20) {
@@ -20,5 +18,18 @@ export default {
             method: 'post',            
             data        
         })    
-    }
+    },
+    getByID(id) {
+        return request({            
+            url: `/article/category/${id}`,            
+            method: 'get',                    
+        })  
+    },
+    update(data) {
+        return request({            
+            url: `/article/category`,            
+            method: 'put', 
+            data                   
+        })  
+    },
 }

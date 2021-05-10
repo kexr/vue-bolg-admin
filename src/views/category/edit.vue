@@ -84,21 +84,25 @@ export default {
                 }
             })
         },
-        submitData(){
-            api.add(this.formData).then((res) => {
-                if(res.code === 20000){
-                    this.$message({
-                        message: '添加成功',
-                        type: 'success'
-                    });
-                    this.handleClose();
-                }else {
-                    this.$message({
-                        message: '添加失败',
-                        type: 'error'
-                    });
-                }
-            })
+        async submitData(){
+            let res = null;
+            if(this.formData.id){
+                res = await api.getByID(this.formData.id);
+            }else {
+                res = await api.add(this.formData);
+            }
+            if(res.code === 20000){
+                this.$message({
+                    message: '保存成功',
+                    type: 'success'
+                });
+                 this.handleClose();
+            }else {
+                this.$message({
+                    message: '保存失败',
+                    type: 'error'
+                });
+             }
         }
     }
 }
