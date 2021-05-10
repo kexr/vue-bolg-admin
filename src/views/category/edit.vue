@@ -12,7 +12,8 @@
         style="width: 400px;"
         label-width="100px"
         label-position="right" 
-        :rules="rules"          
+        :rules="rules"  
+        ref="formData"        
         >
             <el-form-item label="分类名称:" prop="name" >
                 <el-input v-model="formData.name" />
@@ -43,6 +44,8 @@
 </template>
 
 <script>
+import api from '@/api/category.js'
+
 export default {
     name: 'Edit',
     props: {
@@ -73,7 +76,29 @@ export default {
             this.$emit("remote");
         },
         submitForm(formName){
-
+            this.$refs[formName].validate((valid) => {
+                if(valid){
+                    this.submitData();
+                }else {
+                    return false;
+                }
+            })
+        },
+        submitData(){
+            api.add(this.formData).then((res) => {
+                if(res.code === 20000){
+                    this.$message({
+                        message: '添加成功',
+                        type: 'success'
+                    });
+                    this.handleClose();
+                }else {
+                    this.$message({
+                        message: '添加失败',
+                        type: 'error'
+                    });
+                }
+            })
         }
     }
 }
