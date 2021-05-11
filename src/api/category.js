@@ -32,4 +32,10 @@ export default {
             data                   
         })  
     },
+    getNormalList(){
+        return request({            
+            url: `/article/category/list`,            
+            method: 'get',                    
+        }) 
+    }
 }
