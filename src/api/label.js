@@ -7,5 +7,12 @@ export default {    // 列表分页接口
             method: 'post',            
             data: { ...query, current, size } // 合并成一个对象        
         })    
+    },
+    add(data) {        
+        return request({            
+        url: `/article/label`,            
+        method: 'post',            
+        data
+        })
     }
 }     
