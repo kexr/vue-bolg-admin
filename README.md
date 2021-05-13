@@ -12,6 +12,11 @@
 - [vue后台管理系统开发流程全记录(二)_初始化和修改项目配置](https://blog.csdn.net/weixin_45809580/article/details/114369541)
 - [vue后台管理系统开发流程全记录(三)_EasyMock虚拟后台接口对接创建](https://blog.csdn.net/weixin_45809580/article/details/115148129)
 - [vue后台管理系统开发流程全记录(四)_侧边栏实现原理及配置 | 路由配置](https://blog.csdn.net/weixin_45809580/article/details/115984085)
+- [vue后台管理系统开发流程全记录(五)_类别管理功能开发: 表单 | 表格 | 分页](https://blog.csdn.net/weixin_45809580/article/details/116535220)
+- [vue后台管理系统开发流程全记录(六)_类别管理功能开发: 类别新增](https://blog.csdn.net/weixin_45809580/article/details/116609545)
+- [vue后台管理系统开发流程全记录(七)_类别管理功能开发: 类别修改](https://blog.csdn.net/weixin_45809580/article/details/116613877)
+- [vue后台管理系统开发流程全记录(八)_标签管理功能开发: 表单 | 表格 | 分页](https://blog.csdn.net/weixin_45809580/article/details/116709883)
+- [vue后台管理系统开发流程全记录(九)_标签管理功能开发: 标签新增](https://blog.csdn.net/weixin_45809580/article/details/116747801)
 
 ## Build Setup
 
