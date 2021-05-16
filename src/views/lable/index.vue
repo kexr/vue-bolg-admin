@@ -113,8 +113,15 @@ export default {
                 this.page.total = res.data.total;
             })
         },
-        handleEdit(){
-            ;
+        handleEdit(id){
+            // console.log('编辑', id) 
+            api.getById(id).then(response => { 
+                if(response.code === 20000) { 
+                    this.edit.formData = response.data //弹出窗口 
+                    this.edit.visible = true; 
+                    this.edit.title = '编辑' 
+                } 
+            }) 
         },
         handleCurrentChange(val){
             this.page.current = val;

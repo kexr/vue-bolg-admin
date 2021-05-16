@@ -78,7 +78,7 @@ export default {
         async submitData(){
             let res = null;
             if(this.formData.id){
-                res = await api.getByID(this.formData.id);
+                res = await api.update(this.formData);
             }else {
                 res = await api.add(this.formData);
             }

@@ -14,5 +14,11 @@ export default {    // 列表分页接口
         method: 'post',            
         data
         })
+    },
+    update(data) { 
+        return request({ url: `/article/label`, method: 'put', data})
+    },
+    getById(id) { 
+        return request({ url: `/article/label/${id}`, method: 'get'})
     }
 }     
