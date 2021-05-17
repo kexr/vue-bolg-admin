@@ -1,5 +1,20 @@
 <template>
     <div>
+        <el-form :inline="true" size="mini">
+            <el-form-item label="文章标题">
+                <el-input v-model="query.title"></el-input>
+            </el-form-item>
+            <el-form-item label="状态">
+                <el-select clearable filterable v-model="query.status" style="width: 85px">
+                    <el-option v-for="item in statusOptions" :key="item.code" :value="item.code" :label="item.name"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item>
+                <el-button icon='el-icon-search' @click="queryData()" type="primary">查询</el-button>
+                <el-button icon='el-icon-refresh' @click="reload()" class="filter-item">重置</el-button>
+            </el-form-item>
+        </el-form>
+
         <el-table 
         :data="list" 
         border 
@@ -54,23 +69,16 @@
         layout="total, sizes, prev, pager, next, jumper" > 
         </el-pagination>
 
-        <el-form :inline="true" size="mini">
-            <el-form-item label="文章标题">
-                <el-input v-model="query.title"></el-input>
-            </el-form-item>
-            <el-form-item label="状态">
-                
-            </el-form-item>
-            <el-form-item>
-                <el-button icon='el-icon-search' type="primary">查询</el-button>
-                <el-button icon='el-icon-refresh' class="filter-item">重置</el-button>
-            </el-form-item>
-        </el-form>
     </div>
 </template>    
 
 <script>
 import api from '@/api/article.js'
+// 用于下拉框 
+const statusOptions = [ 
+    {code: 0, name: '禁用'}, 
+    {code: 1, name: '正常'} 
+]
 
 export default {
     name: 'Article',
@@ -82,7 +90,8 @@ export default {
                 current: 1, // 当前页码 
                 size: 20, // 每页显示20条数据, 
             },
-            query: {} // 查询条件
+            query: {}, // 查询条件
+            statusOptions
         }
     },
     created(){
@@ -104,6 +113,16 @@ export default {
             this.page.current = val; 
             this.fetchData(); 
         },
+        queryData() { 
+            // 将页码变为第1页 
+            this.page.current = 1 
+            this.fetchData() 
+        },
+        reload() { 
+            this.query = {} 
+            this.page.current = 1 
+            this.fetchData() 
+        }
     }
 }
 </script>
