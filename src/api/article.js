@@ -10,4 +10,10 @@ export default {
             // 合并成一个对象 
         }) 
     }, 
+    // 查询 
+    getById(id) { 
+        return request({ 
+            url: `/article/article/${id}`, 
+            method: 'get' }) 
+    }
 }

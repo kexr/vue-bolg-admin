@@ -69,19 +69,32 @@
         layout="total, sizes, prev, pager, next, jumper" > 
         </el-pagination>
 
+        <audit 
+        :id="audit.id" 
+        :isAudit="audit.isAudit" 
+        :title="audit.title" 
+        :visible="audit.visible" 
+        :remoteClose="remoteClose">
+        </audit>
     </div>
 </template>    
 
 <script>
 import api from '@/api/article.js'
+import Audit from './audit.vue'
 // 用于下拉框 
 const statusOptions = [ 
-    {code: 0, name: '禁用'}, 
-    {code: 1, name: '正常'} 
+    {code: 0, name: '已删除'}, 
+    {code: 1, name: '未审核'},
+    {code: 2, name: '审核通过'}, 
+    {code: 3, name: '审核未通过'} 
 ]
 
 export default {
     name: 'Article',
+    components: {
+        Audit
+    },
     data(){
         return {
             list: [], 
@@ -91,7 +104,13 @@ export default {
                 size: 20, // 每页显示20条数据, 
             },
             query: {}, // 查询条件
-            statusOptions
+            statusOptions,
+            audit: {
+                id: null,
+                isAudit: true,
+                title: '',
+                visible: false
+            }
         }
     },
     created(){
@@ -122,6 +141,16 @@ export default {
             this.query = {} 
             this.page.current = 1 
             this.fetchData() 
+        },
+        remoteClose() { 
+            this.audit.visible = false 
+            this.fetchData()
+        },
+        openAudit(id) { 
+            this.audit.id = id // 文章id 
+            this.audit.isAudit = true // 是审核页面 
+            this.audit.title = '审核文章' 
+            this.audit.visible = true 
         }
     }
 }
