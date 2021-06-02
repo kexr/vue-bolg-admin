@@ -42,7 +42,10 @@
             </el-table-column> 
             <el-table-column align="center" prop="updateDate" label="最后更新时间" > </el-table-column> 
             <el-table-column align="left" label="操作" width="220"> 
-                <template slot-scope="scope" > 
+                <template slot-scope="scope" >
+                    <el-button size="mini" @click="openView(scope.row.id)" type="primary">
+                        查看
+                    </el-button> 
                     <el-button 
                     size="mini" 
                     v-if="scope.row.status === 1" 
@@ -149,6 +152,12 @@ export default {
         openAudit(id) { 
             this.audit.id = id // 文章id 
             this.audit.isAudit = true // 是审核页面 
+            this.audit.title = '审核文章' 
+            this.audit.visible = true 
+        },
+        openView(id){
+            this.audit.id = id // 文章id 
+            this.audit.isAudit = false // 是审核页面 
             this.audit.title = '审核文章' 
             this.audit.visible = true 
         }
