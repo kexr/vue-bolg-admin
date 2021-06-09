@@ -82,79 +82,33 @@ export const constantRoutes = [
       }
     ]
   },
-
   {
-    path: '/form',
+    path: '/config',
     component: Layout,
+    redirect: '/config/user',
+    name: 'Config',
+    meta: { title: '系统管理', icon: 'el-icon-edit' },
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
+        path: 'user',
+        name: 'User',
+        component: () => import('@/views/user/index'),
+        meta: { title: '用户管理', icon: 'formel-icon-user' }
+      },      
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: 'user2',
+        name: 'User2',
+        component: () => import('@/views/user/index'),
+        meta: { title: '权限管理', icon: 'formel-icon-user' }
+      },      
+      {
+        path: 'menu',
+        name: 'Menu',
+        component: () => import('@/views/Menu/index'),
+        meta: { title: '菜单管理', icon: 'formel-icon-user' }
       },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
     ]
   },
-
   {
     path: 'external-link',
     component: Layout,
